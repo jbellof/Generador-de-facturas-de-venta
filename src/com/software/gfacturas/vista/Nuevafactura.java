@@ -6,6 +6,7 @@
 package com.software.gfacturas.vista;
 import com.software.gfacturas.controlador.ControllerProdu;
 import com.software.gfacturas.controlador.ControllerUsu;
+import com.software.gfacturas.modelo.Directorio;
 import com.software.gfacturas.modelo.Producto;
 import com.software.gfacturas.modelo.Usuario;
 import java.awt.Color;
@@ -284,7 +285,17 @@ public class Nuevafactura extends javax.swing.JFrame {
         modelo.addRow(row);
     }
     public void accion(){
-        String opcion = jComboBoxProductos.getItemAt(jComboBoxProductos.getSelectedIndex());
+        String NombresProductos = "\n______________________________\n";
+        long total = 0;
+        System.out.println(""+jTablePRO.getRowCount());
+        for (int i = 0; i < jTablePRO.getRowCount(); i++) {
+            NombresProductos += jTablePRO.getValueAt(i, 0);
+            NombresProductos += " - "+jTablePRO.getValueAt(i, 1);
+            NombresProductos += "\n";
+            total += Long.parseLong(String.valueOf(jTablePRO.getValueAt(i, 1)).trim());
+        }
+        Directorio dir = new Directorio();
+        dir.direct(NombresProductos, u, String.valueOf(total), "No pago");
         
     }
     /**

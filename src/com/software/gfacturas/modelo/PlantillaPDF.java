@@ -5,6 +5,7 @@
  */
 package com.software.gfacturas.modelo;
 
+import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 import java.io.FileOutputStream;
@@ -13,6 +14,7 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Element;
+import com.itextpdf.text.Font;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -41,7 +43,7 @@ public class PlantillaPDF {
         this.estado= estado;
         
         documento=new Document();
-        titulo = new  Paragraph("Plantilla Facturas");
+        titulo = new  Paragraph("Factura");
     }
   public void crearPlantilla(String root){
     try {
@@ -52,16 +54,16 @@ public class PlantillaPDF {
         titulo.setAlignment(1);
         
         documento.add(titulo);
-        documento.add(new Paragraph("Nombre: "  + nombre));
         documento.add(new Paragraph("Cliente: "  + cliente));
         documento.add(new Paragraph("Fecha: "  + fecha));
         documento.add(new Paragraph("Productos: "  + productos));
-        documento.add(new Paragraph("total: "  + total));
-         documento.add(Chunk.NEWLINE);
+        documento.add(Chunk.NEWLINE);
+        documento.add(new Paragraph("TOTAL: "  + total));
+        documento.add(Chunk.NEWLINE);
          
-         Paragraph texto = new Paragraph("factura de ventas ");
-         texto.setAlignment(Element.ALIGN_JUSTIFIED);
-         documento.add(texto);
+         //Paragraph texto = new Paragraph("factura de ventas ");
+         //texto.setAlignment(Element.ALIGN_JUSTIFIED);
+         //documento.add(texto);
          
            documento.add(Chunk.NEWLINE);
            

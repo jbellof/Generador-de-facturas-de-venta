@@ -27,7 +27,8 @@ public class Directorio {
     JFileChooser chooser;
     String choosertitle;
 
-    public void direct() {
+    public void direct(String nProductos,Usuario usu,String total,String estado) {
+        Date fecha = new Date();
         chooser = new JFileChooser();
         chooser.setCurrentDirectory(new java.io.File("."));
         chooser.setDialogTitle(choosertitle);
@@ -43,7 +44,7 @@ public class Directorio {
                     + chooser.getCurrentDirectory());
             System.out.println("getSelectedFile() : "
                     + chooser.getSelectedFile());
-            PlantillaPDF pla = new  PlantillaPDF("cristian", "cristian", "juan", "ayer", "pasivo");
+            PlantillaPDF pla = new  PlantillaPDF(usu.getNombreC(), nProductos, String.valueOf(fecha), estado, total);
             pla.crearPlantilla(String.valueOf(chooser.getSelectedFile()));
         } else {
             System.out.println("No Selection ");
